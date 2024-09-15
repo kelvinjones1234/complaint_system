@@ -8,6 +8,9 @@ class ComplaintCategory(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Complaint Categories'
+
 class Complaint(models.Model):
     # STATUS_CHOICES = [
     #     ('received', 'Received'),
@@ -19,11 +22,15 @@ class Complaint(models.Model):
     description = models.TextField()
     category = models.ForeignKey(ComplaintCategory, on_delete=models.SET_NULL, null=True)
     # status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='received')
+    file = models.FileField(upload_to="", blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = 'Complaints'
     
 
 class Feedback(models.Model):

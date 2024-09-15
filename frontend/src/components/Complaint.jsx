@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import SubmitButton from "./SubmitButton";
 import { AuthContext } from "../context/AuthContext";
 
 const Alert = ({ variant, title, children }) => (
@@ -21,6 +20,7 @@ const ComplaintForm = () => {
     title: "",
     category: "",
     description: "",
+    file: null, // New field for the file
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -28,11 +28,18 @@ const ComplaintForm = () => {
   const { authTokens, user } = useContext(AuthContext);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+    if (name === "file") {
+      setFormData((prevData) => ({
+        ...prevData,
+        file: files[0], // Handle file upload
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   useEffect(() => {
@@ -48,18 +55,22 @@ const ComplaintForm = () => {
       return;
     }
 
+    const complaintData = new FormData(); // Create a FormData object to handle file upload
+    complaintData.append("title", formData.title);
+    complaintData.append("description", formData.description);
+    complaintData.append("category", formData.category);
+    complaintData.append("created_by", user.user_id);
+    if (formData.file) {
+      complaintData.append("file", formData.file); // Append file if it exists
+    }
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/complain/",
-        {
-          title: formData.title,
-          description: formData.description,
-          category: formData.category,
-          created_by: user.user_id,
-        },
+        complaintData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data", // Ensure correct content type
             Authorization: `Bearer ${authTokens.access}`,
           },
         }
@@ -70,7 +81,7 @@ const ComplaintForm = () => {
         setError("");
         setTimeout(() => {
           setSubmitted(false);
-          setFormData({ title: "", category: "", description: "" }); // Reset the form
+          setFormData({ title: "", category: "", description: "", file: null }); // Reset the form including file
         }, 3000); // Hide success message after 3 seconds
       } else {
         setError(
@@ -156,6 +167,21 @@ const ComplaintForm = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Please provide details about your complaint"
             ></textarea>
+          </div>
+          <div>
+            <label
+              htmlFor="file"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Attach File (Optional)
+            </label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              onChange={handleChange}
+              className="mt-1 block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
+            />
           </div>
           {error && (
             <Alert variant="error" title="Error">

@@ -5,7 +5,7 @@ from .serializers import ComplaintSerializer, ComplaintCategorySerializer, Feedb
 class ComplaintCreateAPIView(generics.ListCreateAPIView):
     queryset = Complaint.objects.all()
     serializer_class = ComplaintSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class ComplaintCategoryView(generics.ListAPIView):

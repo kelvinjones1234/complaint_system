@@ -33,6 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    phone = models.CharField(max_length=11, null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='student')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -47,4 +48,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name_plural = _('Registered User')

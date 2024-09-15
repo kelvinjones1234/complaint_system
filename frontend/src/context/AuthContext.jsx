@@ -83,6 +83,7 @@ const AuthProvider = ({ children }) => {
           first_name: formData.firstName,
           last_name: formData.lastName,
           password: formData.password,
+          phone: formData.phone,
         },
 
         {

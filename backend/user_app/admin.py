@@ -3,6 +3,12 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from .models import User
 
+admin.site.site_url = None
+
+admin.site.site_header = "Actu Admin Pannel"
+admin.site.site_title = "Actu"
+admin.site.index_title = "Welcome Actu Admin Pannel"
+
 class UserAdmin(BaseUserAdmin):
     # Define the display columns for the admin interface
     list_display = ('email', 'first_name', 'last_name', 'status', 'is_staff', 'is_active')
@@ -30,4 +36,6 @@ class UserAdmin(BaseUserAdmin):
     readonly_fields = ('last_login', 'date_joined')
 
 # Register the custom User model with the custom UserAdmin class
+
 admin.site.register(User, UserAdmin)
+
