@@ -77,7 +77,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-opacity-30 bg-gray-100">
-      <div className="max-w-md w-full p-8 bg-white bg-opacity-90 rounded-xl shadow-2xl border border-gray-300 backdrop-blur-md">
+      <div className="max-w-md w-full p-8 bg-white bg-opacity-90 rounded-xl shadow-2xl border border-gray-300 backdrop-blur-md mt-[5rem]">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
           Create an Account
         </h2>

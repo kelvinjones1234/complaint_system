@@ -5,3 +5,6 @@ class ComplainAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'complain_app'
     verbose_name = 'Complaints'
+
+    def ready(self):
+        import complain_app.signals

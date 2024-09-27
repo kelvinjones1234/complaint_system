@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import SubmitButton from "./SubmitButton";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -54,8 +55,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-opacity-30 bg-gray-100 bg-center">
-      <div className="max-w-md w-full p-8 bg-white bg-opacity-90 rounded-xl shadow-2xl border border-gray-300 backdrop-blur-md">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-opacity-90 bg-gray-100 bg-center ">
+      <div className="max-w-md w-full p-8 bg-white bg-opacity-90 rounded-xl shadow-2xl border border-gray-300 backdrop-blur-md mt-[5rem]">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
           Login to Your Account
         </h2>
@@ -137,12 +138,12 @@ const Login = () => {
           </div>
         </form>
         <div className="mt-4 text-center">
-          <a
-            href="/forgot-password"
+          <Link
+            to={"/user/get-password-reset-link"}
             className="text-sm text-indigo-600 hover:text-indigo-800"
           >
             Forgot Password?
-          </a>
+          </Link>
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">

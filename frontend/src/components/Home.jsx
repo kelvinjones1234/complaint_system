@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center p-8 bg-opacity-30 bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-center items-center p-8 bg-opacity-90 bg-gray-100 pt-[8rem]">
       <div className="max-w-4xl w-full bg-white bg-opacity-90 rounded-lg shadow-xl backdrop-blur-sm p-8 md:p-12">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
           Welcome to Anti Corruption and Transparency Unit (ACTU) Complaint
@@ -21,7 +21,7 @@ const Home = () => {
             <h2 className="text-2xl font-semibold text-blue-800 mb-4">
               How It Works
             </h2>
-            <ol className="list-decimal list-inside space-y-2 text-gray-700">
+            <ol className="list-decimal space-y-2 text-gray-700">
               <li>Submit your complaint using our easy-to-use form</li>
               <li>Receive a confirmation email with your complaint number</li>
               <li>Our team reviews and processes your complaint</li>
@@ -31,14 +31,20 @@ const Home = () => {
           </div>
           <div className="bg-green-50 p-6 rounded-lg">
             <h2 className="text-2xl font-semibold text-green-800 mb-4">
-              Our Commitment
+              Mission
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Prompt acknowledgment of all complaints</li>
-              <li>Fair and thorough investigation</li>
-              <li>Timely resolution of issues</li>
-              <li>Continuous improvement of our services</li>
-              <li>Protection of your privacy and confidentiality</li>
+              <div>
+                A corruption-free institution where accountability, integrity,
+                transparency and equity holds sway
+              </div>
+              <h2 className="text-2xl font-semibold text-red-800 mb-4">
+                Vision
+              </h2>
+              <div>
+                To eradicate all forms of corrupt practices in the institution
+                through massive enlightenment campaign and educative programmes
+              </div>
             </ul>
           </div>
         </div>

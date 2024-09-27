@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import logo from "../assets/img/icprc.png";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,21 +15,21 @@ const NavBar = () => {
   //   };
 
   return (
-    <nav className="bg-gray-800 p-4 shadow-md">
+    <nav className="bg-gray-100 px-4 shadow-md fixed w-full z-[10]">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-white text-2xl font-semibold">
           <Link to="/home-page" className="hover:text-gray-300">
-            ActuCs
+            <img src={logo} alt="" className="h-[5rem]" />
           </Link>
         </div>
-        <div className="hidden md:flex space-x-6 items-center">
-          <Link to="/home-page" className="text-gray-300 hover:text-white">
+        <div className="hidden md:flex space-x-6 items-center font-bold">
+          <Link to="/home-page" className="text-purple-800 hover:text-purple-500">
             Home
           </Link>
-          <Link to="/complaints" className="text-gray-300 hover:text-white">
+          <Link to="/complaints" className="text-purple-800 hover:text-purple-500">
             Make Complaint
           </Link>
-          <Link to="/profile" className="text-gray-300 hover:text-white">
+          <Link to="/profile" className="text-purple-800 hover:text-purple-500">
             Profile
           </Link>
           <Link to={"/login"} onClick={user && logoutUser}>

@@ -97,107 +97,112 @@ const ComplaintForm = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-8 my-10 bg-white bg-opacity-95 rounded-lg shadow-xl backdrop-blur-sm">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">
-        Submit a Complaint
-      </h2>
-      {submitted ? (
-        <Alert variant="success" title="Success">
-          Your complaint has been submitted successfully. We'll get back to you
-          soon.
-        </Alert>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="title"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter a brief title for your complaint"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Category
-            </label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-              <option value="">Select a category</option>
+    <div className="min-h-screen bg-opacity-90 bg-gray-100 pt-[6rem]">
+      <div className="max-w-xl mx-auto mx-auto py-9 sm:px-6 lg:px-8">
+        {submitted ? (
+          <Alert variant="success" title="Success">
+            Your complaint has been submitted successfully. We'll get back to
+            you soon.
+          </Alert>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-white p-8 rounded-xl"
+          >
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">
+              Submit a Complaint
+            </h2>
+            <div>
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Complaint Summary
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter a brief summary for your complaint"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="category"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Complaint Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              >
+                <option value="">Select a category</option>
 
-              {category.map((item) => (
-                <option value={item.id} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Description
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              rows="4"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Please provide details about your complaint"
-            ></textarea>
-          </div>
-          <div>
-            <label
-              htmlFor="file"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Attach File (Optional)
-            </label>
-            <input
-              type="file"
-              id="file"
-              name="file"
-              onChange={handleChange}
-              className="mt-1 block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
-            />
-          </div>
-          {error && (
-            <Alert variant="error" title="Error">
-              {error}
-            </Alert>
-          )}
-          <div className="flex items-center justify-end">
-            <button
-              type="submit"
-              className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
-            >
-              Submit Complaint
-            </button>
-          </div>
-        </form>
-      )}
+                {category.map((item) => (
+                  <option value={item.id} key={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Complaint Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+                rows="4"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Please provide details about your complaint"
+              ></textarea>
+            </div>
+            <div>
+              <label
+                htmlFor="file"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Attach File (Optional)
+              </label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleChange}
+                className="mt-1 block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
+              />
+            </div>
+            {error && (
+              <Alert variant="error" title="Error">
+                {error}
+              </Alert>
+            )}
+            <div className="flex items-center justify-end">
+              <button
+                type="submit"
+                className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+              >
+                Submit Complaint
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

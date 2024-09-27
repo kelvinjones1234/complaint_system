@@ -3,9 +3,13 @@ from .models import Complaint, ComplaintCategory, Feedback
 from .serializers import ComplaintSerializer, ComplaintCategorySerializer, FeedbackSerializer
 
 class ComplaintCreateAPIView(generics.ListCreateAPIView):
-    queryset = Complaint.objects.all()
     serializer_class = ComplaintSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Return only the complaints made by the current logged-in user
+        return Complaint.objects.filter(created_by=self.request.user)
+
 
 
 class ComplaintCategoryView(generics.ListAPIView):
