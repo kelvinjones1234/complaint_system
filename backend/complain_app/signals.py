@@ -3,6 +3,9 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Feedback
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 @receiver(post_save, sender=Feedback)
 def send_feedback_email(sender, instance, created, **kwargs):

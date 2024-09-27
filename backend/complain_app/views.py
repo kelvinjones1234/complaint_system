@@ -17,7 +17,11 @@ class ComplaintCategoryView(generics.ListAPIView):
     serializer_class = ComplaintCategorySerializer
 
 class FeedbackView(generics.ListAPIView):
-    queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Return only the complaints made by the current logged-in user
+        return Feedback.objects.filter(complaint__created_by=self.request.user)
 
 
