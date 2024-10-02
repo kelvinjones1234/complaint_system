@@ -9,6 +9,7 @@ import {
   CheckCircle,
   AlertCircle,
   Clock,
+  Phone,
   Settings,
   CreditCard,
   Shield,
@@ -71,6 +72,7 @@ const Profile = () => {
                 <dl className="mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500 flex items-center">
+                      <User className="h-5 w-5 mr-2 text-gray-400" />
                       Full Name
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 font-semibold">
@@ -79,24 +81,33 @@ const Profile = () => {
                     </dd>
                   </div>
                   <div className="sm:col-span-1">
-                    <dt className="text-sm font-medium text-gray-500 flex items-center">
-                      <Mail className="h-5 w-5 mr-2 text-gray-400" />
+                    <dt className="text-sm font-medium text-gray-500 flex items-center ">
+                      <Mail className="h-5 w-5 mr-2 text-gray-400 " />
                       Email
                     </dt>
-                    <dd className="mt-1 text-sm text-gray-900">{user.email}</dd>
+                    <dd className="mt-1 text-sm text-gray-900 font-semibold">{user.email}</dd>
+                  </div>
+                  <div className="sm:col-span-1">
+                    <dt className="text-sm font-medium text-gray-500 flex items-center">
+                      <Phone className="h-5 w-5 mr-2 text-gray-400" />
+                      Phone
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 font-semibold">
+                      {user.phone ? user.phone : "Null"}
+                    </dd>
                   </div>
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500 flex items-center">
                       <Calendar className="h-5 w-5 mr-2 text-gray-400" />
                       Member since
                     </dt>
-                    <dd className="mt-1 text-sm text-gray-900">
+                    <dd className="mt-1 text-sm text-gray-900 font-semibold">
                       {new Date(user.date_joined).toLocaleDateString()}
                     </dd>
                   </div>
-
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500 flex items-center">
+                      <Shield className="h-5 w-5 mr-2 text-gray-400" />
                       Membership Status
                     </dt>
                     <dd className="mt-1 text-sm font-semibold text-gray-900">
@@ -181,6 +192,7 @@ const Profile = () => {
                 <ul className="divide-y divide-gray-200">
                   {notifications.map((item) => (
                     <li key={item.id} className="px-4 py-4 sm:px-6">
+                      {console.log(notifications)}
                       <div className="flex items-center">
                         {item.status.toLowerCase() === "received" ? (
                           <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
@@ -190,12 +202,12 @@ const Profile = () => {
                           <CheckCircle className="h-5 w-5 text-blue-400 mr-2" />
                         )}
                         <p className="text-sm font-medium text-gray-900">
-                          {`Your complaint: ${
+                          {`Your complaint on ${
                             item.complaint_text
                           } is being ${item.status.replace("_", " ")}.`}
                         </p>
                       </div>
-                      <div className="mt-2 text-sm text-gray-500">
+                      <div className="mt-2 ml-7 text-sm text-gray-500">
                         <p>{item.message ? item.message : "No response"}</p>
                         <p className="flex items-center">
                           <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" />

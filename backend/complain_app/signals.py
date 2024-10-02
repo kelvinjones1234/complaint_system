@@ -12,7 +12,7 @@ def send_feedback_email(sender, instance, created, **kwargs):
     if created:
         complaint = instance.complaint
         user_email = complaint.created_by.email
-        subject = f"Feedback on your complaint: {complaint.title}"
+        subject = f"Feedback on your complaint: {complaint.category.name}"
 
         # HTML message template
         message_html = f"""
@@ -59,7 +59,7 @@ def send_feedback_email(sender, instance, created, **kwargs):
                 </div>
                 <div class="content">
                     <p>Dear {complaint.created_by},</p>
-                    <p>Your complaint titled '<strong>{complaint.title}</strong>' has been updated with the following feedback:</p>
+                    <p>Your complaint category '<strong>{complaint.category.name}</strong>' has been updated with the following feedback:</p>
                     <p><strong>Status:</strong> {instance.get_status_display()}</p>
                     <p><strong>Message:</strong> {instance.message if instance.message else 'No additional message.'}</p>
                     <p>Thank you for your patience.</p>

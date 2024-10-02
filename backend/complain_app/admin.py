@@ -14,14 +14,14 @@ class FeedbackInline(admin.TabularInline):
 
 @admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
-       list_display = ('title', 'category', 'created_by', 'created_at', 'file_link')
+       list_display = ('category', 'created_by', 'created_at', 'file_link')
        list_filter = ('category', 'created_at')
-       search_fields = ('title', 'description', 'created_by__username')
+       search_fields = ('description', 'created_by__username')
        readonly_fields = ('created_by', 'file_link')
        inlines = [FeedbackInline]
        fieldsets = (
            (None, {
-               'fields': ('title', 'description', 'category', 'file', 'file_link')
+               'fields': ('description', 'category', 'file', 'file_link')
            }),
            ('User Information', {
                'fields': ('created_by',),
@@ -51,7 +51,7 @@ class ComplaintCategoryAdmin(admin.ModelAdmin):
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('complaint', 'created_at',)
-    search_fields = ('complaint__title', 'message',)
+    search_fields = ('message',)
     readonly_fields = ('created_at',)
     ordering = ('-created_at',)
 

@@ -9,7 +9,7 @@ class ComplaintCategorySerializer(serializers.ModelSerializer):
 
 # Feedback Serializer
 class FeedbackSerializer(serializers.ModelSerializer):
-    complaint_text = serializers.CharField(source='complaint.title')  # Accessing the title of the related complaint
+    complaint_text = serializers.CharField(source='complaint.category.name')  # Accessing the id of the related complaint
 
     class Meta:
         model = Feedback

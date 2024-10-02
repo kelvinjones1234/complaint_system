@@ -36,7 +36,7 @@ const Home = () => {
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <div>
                 A corruption-free institution where accountability, integrity,
-                transparency and equity holds sway
+                transparency and equity hold sway
               </div>
               <h2 className="text-2xl font-semibold text-red-800 mb-4">
                 Vision

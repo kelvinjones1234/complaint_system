@@ -17,7 +17,6 @@ const Alert = ({ variant, title, children }) => (
 
 const ComplaintForm = () => {
   const [formData, setFormData] = useState({
-    title: "",
     category: "",
     description: "",
     file: null, // New field for the file
@@ -50,13 +49,12 @@ const ComplaintForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.category || !formData.description) {
+    if (!formData.category || !formData.description) {
       setError("Please fill in all fields.");
       return;
     }
 
     const complaintData = new FormData(); // Create a FormData object to handle file upload
-    complaintData.append("title", formData.title);
     complaintData.append("description", formData.description);
     complaintData.append("category", formData.category);
     complaintData.append("created_by", user.user_id);
@@ -81,7 +79,7 @@ const ComplaintForm = () => {
         setError("");
         setTimeout(() => {
           setSubmitted(false);
-          setFormData({ title: "", category: "", description: "", file: null }); // Reset the form including file
+          setFormData({ category: "", description: "", file: null }); // Reset the form including file
         }, 3000); // Hide success message after 3 seconds
       } else {
         setError(
@@ -109,27 +107,6 @@ const ComplaintForm = () => {
             onSubmit={handleSubmit}
             className="space-y-6 bg-white p-8 rounded-xl"
           >
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">
-              Submit a Complaint
-            </h2>
-            <div>
-              <label
-                htmlFor="title"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Complaint Summary
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter a brief summary for your complaint"
-              />
-            </div>
             <div>
               <label
                 htmlFor="category"

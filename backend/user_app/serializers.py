@@ -11,6 +11,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
       token['first_name'] = user.first_name
       token['status'] = user.status
       token['last_name'] = user.last_name
+      token['phone'] = user.phone
       token['date_joined'] = user.date_joined.isoformat()
       return token
 

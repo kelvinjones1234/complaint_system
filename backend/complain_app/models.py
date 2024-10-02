@@ -12,25 +12,19 @@ class ComplaintCategory(models.Model):
         verbose_name_plural = 'Complaint Categories'
 
 class Complaint(models.Model):
-    # STATUS_CHOICES = [
-    #     ('received', 'Received'),
-    #     ('in_review', 'In Review'),
-    #     ('reviewed', 'Reviewed'),
-    # ]
-
-    title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ForeignKey(ComplaintCategory, on_delete=models.SET_NULL, null=True)
-    # status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='received')
     file = models.FileField(upload_to="", blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        # Ensure category is not None before trying to access its name
+        return self.category.name if self.category else "No Category"
 
     class Meta:
         verbose_name_plural = 'Complaints'
+
     
 
 class Feedback(models.Model):
@@ -45,4 +39,4 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Feedback for {self.complaint.title}"
+        return f"{self.complaint.category}"
